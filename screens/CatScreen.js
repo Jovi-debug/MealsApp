@@ -7,7 +7,9 @@ function CatScreen({navigation}) {
     // helper function
 function renderCategoryItem(itemData) {
     function pressHandler() {
-        navigation.navigate("Meal Overview") //navigates the categories grid on press to the specific meal overview
+        navigation.navigate("Meal Overview", {
+            categoryId: itemData.item.id,
+        }); //navigates the categories grid on press to the specific meal overview
     };
 
     return (
