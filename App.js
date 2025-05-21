@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import CatScreen from "./screens/CatScreen";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
@@ -37,13 +37,7 @@ export default function App() {
             //   };
             // }}
           />
-          <Stack.Screen
-            name="MealDetails"
-            component={MealDetailsScreen}
-            options={{
-              title: "Meal Details",
-            }}
-          />
+          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

@@ -1,14 +1,28 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Button, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
+import { useLayoutEffect } from "react";
 
-function MealDetailsScreen({ route }) {
+function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId; //* in the params object we have meal id in the selectMealItemHandler
 
   // gives access to all the properties(data) in meal.js
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  //* Adding button to the header in MealDetails
+  function headerButtonPressHandler() {
+    console.log("pressed!");
+}
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+        headerRight: () => {
+            return <Button title="Add to favs" color="white" onPress={headerButtonPressHandler}/>
+        }
+    })
+  }, [navigation, headerButtonPressHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
