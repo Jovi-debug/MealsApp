@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 
-function MealDetails({duration, complexity, affordability}) {
+//* By adding the props "style" & "textStyle" it will make it possible to change the text color in the MealDetails screen, without change it in the MealOverviewScreen
+function MealDetails({duration, complexity, affordability, style, textStyle}) {
   return (
-    <View style={styles.detailsZone}>
-      <Text style={styles.detailItemZone}>{duration}</Text>
-      <Text style={styles.detailItemZone}>{complexity.toUpperCase()}</Text>
-      <Text style={styles.detailItemZone}>{affordability.toUpperCase()}</Text>
+    <View style={[styles.detailsZone, style]}>
+      <Text style={[styles.detailItemZone, textStyle]}>{duration}</Text>
+      <Text style={[styles.detailItemZone, textStyle]}>{complexity.toUpperCase()}</Text>
+      <Text style={[styles.detailItemZone, textStyle]}>{affordability.toUpperCase()}</Text>
     </View>
   );
 }
