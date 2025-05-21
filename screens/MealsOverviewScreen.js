@@ -1,42 +1,54 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { MEALS } from "../data/dummy-data";
+import { FlatList, StyleSheet, View } from "react-native";
+import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
+import { useLayoutEffect } from "react";
 
-function MealsOverviewScreen({ route }) {
-    const catId = route.params.categoryId;
-    
-    const displayedMeals = MEALS.filter((mealItem) => {
-        return mealItem.categoryIds.indexOf(catId) >= 0;
-    })
+function MealsOverviewScreen({ route, navigation }) {
+  const catId = route.params.categoryId;
 
-    function renderMealItem(itemData) {
-        //helper object
-        const mealItemsProps = {
-            title: itemData.item.title,
-            imageUrl: itemData.item.imageUrl,
-            affordability: itemData.item.affordability,
-            complexity: itemData.item.complexity,
-            duration: itemData.item.duration,
-        }; 
+  const displayedMeals = MEALS.filter((mealItem) => {
+    return mealItem.categoryIds.indexOf(catId) >= 0;
+  });
 
-        return (
-            <MealItem {...mealItemsProps}/>
-        );
-    }
+  useLayoutEffect(() => {
+    const categoryTitle = CATEGORIES.find(
+      (category) => category.id === catId
+    ).title;
 
-    return (
-        <View style= {styles.container}>
-            <FlatList data={displayedMeals} keyExtractor={(item) => item.id} renderItem={renderMealItem}/>
-        </View>
-    )
+    navigation.setOptions({
+      title: categoryTitle,
+    });
+  }, [catId, navigation]);
+
+  function renderMealItem(itemData) {
+    //helper object
+    const mealItemsProps = {
+      title: itemData.item.title,
+      imageUrl: itemData.item.imageUrl,
+      affordability: itemData.item.affordability,
+      complexity: itemData.item.complexity,
+      duration: itemData.item.duration,
+    };
+
+    return <MealItem {...mealItemsProps} />;
+  }
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item) => item.id}
+        renderItem={renderMealItem}
+      />
+    </View>
+  );
 }
 
 export default MealsOverviewScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    },
-
-})
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+});
