@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -7,10 +8,30 @@ import {
   Platform,
 } from "react-native";
 
-function MealItem({ title, imageUrl, duration, complexity, affordability }) {
+function MealItem({
+  id,
+  title,
+  imageUrl,
+  duration,
+  complexity,
+  affordability,
+}) {
+    //* Either navigate to the MealDetails Page using the useNavigation hook here or navigate normally in the MealsOverviewScreen
+  const navigation = useNavigation();
+
+  function selectMealItemHandler() {
+    navigation.navigate("MealDetails", {
+      mealId: id,
+    });
+  }
+
   return (
     <View style={styles.mealItem}>
-      <Pressable android_ripple={{color: "'#cc"}}  style={({pressed}) => pressed ? styles.buttonPressed : null}>
+      <Pressable
+        android_ripple={{ color: "'#cc" }}
+        style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={selectMealItemHandler}
+      >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -47,7 +68,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     borderRadius: 8,
-    overflow: "hidden"
+    overflow: "hidden",
   },
   image: {
     width: "100%",

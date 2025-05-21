@@ -23,6 +23,7 @@ function MealsOverviewScreen({ route, navigation }) {
   function renderMealItem(itemData) {
     //helper object
     const mealItemsProps = {
+      id: itemData.item.id,
       title: itemData.item.title,
       imageUrl: itemData.item.imageUrl,
       affordability: itemData.item.affordability,
