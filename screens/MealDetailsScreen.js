@@ -1,9 +1,10 @@
-import { Button, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import { useLayoutEffect } from "react";
+import IconButton from "../components/IconButton";
 
 function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId; //* in the params object we have meal id in the selectMealItemHandler
@@ -19,7 +20,7 @@ function MealDetailsScreen({ route, navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
         headerRight: () => {
-            return <Button title="Add to favs" color="white" onPress={headerButtonPressHandler}/>
+            return <IconButton onPressedBtn={headerButtonPressHandler} icon="star" color="white" />
         }
     })
   }, [navigation, headerButtonPressHandler]);
