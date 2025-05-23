@@ -3,27 +3,41 @@ import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/IconButton";
+import { FavouritesContext } from "../store/context/favourite-context";
 
 function MealDetailsScreen({ route, navigation }) {
+  const favMealsContext = useContext(FavouritesContext);
+
   const mealId = route.params.mealId; //* in the params object we have meal id in the selectMealItemHandler
 
   // gives access to all the properties(data) in meal.js
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  //* Adding button to the header in MealDetails
-  function headerButtonPressHandler() {
-    console.log("pressed!");
-}
+  const mealIsFavourite = favMealsContext.ids.includes(mealId) //boolean: finds out if the meal is favourite or not
+  
+  function changeFavStatusHandler() {
+    if (mealIsFavourite) {
+      favMealsContext.removeFavourite(mealId);
+    } else {
+      favMealsContext.addFavourite(mealId);
+    }
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
-        headerRight: () => {
-            return <IconButton onPressedBtn={headerButtonPressHandler} icon="star" color="white" />
-        }
-    })
-  }, [navigation, headerButtonPressHandler]);
+      headerRight: () => {
+        return (
+          <IconButton
+            icon= {mealIsFavourite ? "star" : "star-outline"}
+            color="white"
+            onPressedBtn={changeFavStatusHandler}
+          />
+        );
+      },
+    });
+  }, [navigation, changeFavStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
@@ -50,9 +64,9 @@ function MealDetailsScreen({ route, navigation }) {
 export default MealDetailsScreen;
 
 const styles = StyleSheet.create({
-    rootContainer: {
-        marginBottom: 32,
-    },
+  rootContainer: {
+    marginBottom: 32,
+  },
   image: {
     width: "100%",
     height: 350,
