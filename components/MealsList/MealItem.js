@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import MealDetails from "../MealDetails";
 
-
 function MealItem({
   id,
   title,
@@ -18,7 +17,7 @@ function MealItem({
   complexity,
   affordability,
 }) {
-    //* Either navigate to the MealDetails Page using the useNavigation hook here or navigate normally in the MealsOverviewScreen
+  //* Either navigate to the MealDetails Page using the useNavigation hook here or navigate normally in the MealsOverviewScreen
   const navigation = useNavigation();
 
   function selectMealItemHandler() {
@@ -36,10 +35,21 @@ function MealItem({
       >
         <View style={styles.innerContainer}>
           <View>
-            <Image source={{ uri: imageUrl }} style={styles.image} />
+            <Image source={imageUrl} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <MealDetails duration={duration}  complexity={complexity} affordability={affordability}/>
+          {/* Table Header */}
+          <View style={styles.tableHeader}>
+            <Text style={styles.headerText}>DURATION</Text>
+            <Text style={styles.headerText}>COMPLEXITY</Text>
+            <Text style={styles.headerText}>PRICE RANGE</Text>
+          </View>
+
+          <MealDetails
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -76,5 +86,18 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     opacity: 0.5,
+  },
+  tableHeader: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 8,
+    backgroundColor: "#f0f0f0",
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+  },
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 14,
   },
 });

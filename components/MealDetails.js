@@ -4,10 +4,11 @@ import { View, Text, StyleSheet } from "react-native";
 function MealDetails({duration, complexity, affordability, style, textStyle}) {
   return (
     <View style={[styles.detailsZone, style]}>
-      <Text style={[styles.detailItemZone, textStyle]}>{duration}</Text>
-      <Text style={[styles.detailItemZone, textStyle]}>{complexity.toUpperCase()}</Text>
-      <Text style={[styles.detailItemZone, textStyle]}>{affordability.toUpperCase()}</Text>
-    </View>
+  <View style={styles.cell}><Text style={[styles.detailItemZone, textStyle]}>{duration}</Text></View>
+  <View style={[styles.cell, styles.complexitySty]}><Text style={[styles.detailItemZone, textStyle]}>{complexity.toUpperCase()}</Text></View>
+  <View style={styles.cell}><Text style={[styles.detailItemZone, textStyle]}>{affordability.toUpperCase()}</Text></View>
+</View>
+
   );
 }
 
@@ -17,11 +18,20 @@ const styles = StyleSheet.create({
   detailsZone: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     padding: 8,
   },
   detailItemZone: {
-    marginHorizontal: 4,
+    marginHorizontal: 2,
     fontSize: 12,
   },
+  cell: {
+  flex: 1,
+  alignItems: "flex-start",
+  paddingLeft: 15,
+},
+complexitySty: {
+  paddingLeft: 1
+}
+
 });

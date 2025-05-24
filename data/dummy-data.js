@@ -2,16 +2,18 @@ import Category from "../models/category";
 import Meal from "../models/meal";
 
 export const CATEGORIES = [
-  new Category('c1', 'Italian', '#f5428d'),
-  new Category('c2', 'Quick & Easy', '#f54242'),
-  new Category('c3', 'Hamburgers', '#f5a442'),
-  new Category('c4', 'German', '#f5d142'),
-  new Category('c5', 'Light & Lovely', '#368dff'),
-  new Category('c6', 'Exotic', '#41d95d'),
-  new Category('c7', 'Breakfast', '#9eecff'),
-  new Category('c8', 'Asian', '#b9ffb0'),
-  new Category('c9', 'French', '#ffc7ff'),
-  new Category('c10', 'Summer', '#47fced')
+  new Category('c1', 'Italian', '#f5428d', require("../assets/foodImg/Spaghetti.jpg")),
+  new Category('c2', 'Quick & Easy', '#f54242',require("../assets/foodImg/FoodWallpaper.jpg")),
+  new Category('c3', 'Hamburgers', '#f5a442', require("../assets/foodImg/hamburgers.jpg")),
+  new Category('c4', 'German', '#f5d142', require("../assets/foodImg/germanFood.png")),
+  new Category('c5', 'Light & Lovely', '#368dff', require("../assets/foodImg/easyLunch.jpg")),
+  new Category('c6', 'Ushqim Shqiptar', '#41d95d', require("../assets/foodImg/ushqimShqiptar.jpeg")),
+  new Category('c7', 'Breakfast', '#9eecff', require("../assets/foodImg/Breakfast.jpg")),
+  new Category('c8', 'Asian', '#b9ffb0', require("../assets/foodImg/asianFood.png")),
+  new Category('c9', 'French', '#ffc7ff', require("../assets/foodImg/frenchFood.jpg")),
+  new Category('c10', 'Summer', '#47fced', require("../assets/foodImg/summerFood.jpg"))
+  // new Category('c11', 'Desert', '#47fced'),
+  // new Category('c12', 'Soup', '#47fced'),
 ];
 
 export const MEALS = [
@@ -21,8 +23,8 @@ export const MEALS = [
     'Spaghetti with Tomato Sauce',
     'affordable',
     'simple',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-    20,
+    require("../assets/foodImg/Spaghetti.jpg"),
+  '20 min',
     [
       '4 Tomatoes',
       '1 Tablespoon of Olive Oil',
@@ -52,8 +54,8 @@ export const MEALS = [
     'Toast Hawaii',
     'affordable',
     'simple',
-    'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
-    10,
+    require("../assets/foodImg/ToastHawaii.jpg"),
+  '10 min',
     [
       '1 Slice White Bread',
       '1 Slice Ham',
@@ -78,8 +80,8 @@ export const MEALS = [
     'Classic Hamburger',
     'pricey',
     'simple',
-    'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
-    45,
+    require("../assets/foodImg/classicHamburger.jpg"),
+    '45 min',
     [
       '300g Cattle Hack',
       '1 Tomato',
@@ -107,8 +109,8 @@ export const MEALS = [
     'Wiener Schnitzel',
     'luxurious',
     'challenging',
-    'https://cdn.pixabay.com/photo/2018/03/31/19/29/schnitzel-3279045_1280.jpg',
-    60,
+    require("../assets/foodImg/WienerSchnitzel.jpg"),
+  '60 min',
     [
       '8 Veal Cutlets',
       '4 Eggs',
@@ -140,8 +142,8 @@ export const MEALS = [
     'Salad with Smoked Salmon',
     'luxurious',
     'simple',
-    'https://cdn.pixabay.com/photo/2016/10/25/13/29/smoked-salmon-salad-1768890_1280.jpg',
-    15,
+    require("../assets/foodImg/SadalWithSmokedSalmon.jpg"),
+  '15 min',
     [
       'Arugula',
       "Lamb's Lettuce",
@@ -168,30 +170,31 @@ export const MEALS = [
 
   new Meal(
     'm6',
-    ['c6', 'c10'],
-    'Delicious Orange Mousse',
+    ['c6'],
+    'Gurabije',
     'affordable',
-    'hard',
-    'https://cdn.pixabay.com/photo/2017/05/01/05/18/pastry-2274750_1280.jpg',
-    240,
+    'easy',
+    require("../assets/foodImg/Gurabije.jpg"),
+    '20 min',
     [
-      '4 Sheets of Gelatine',
-      '150ml Orange Juice',
-      '80g Sugar',
-      '300g Yoghurt',
-      '200g Cream',
-      'Orange Peel'
+      '2 vez',
+      '1 got e gjys sheqer',
+      '1 got vaj',
+      '1 got qumesht',
+      '6 gota gjys miell',
+      '1 paket e gjys pluhur fryrjeje',
+      '1 paket vanille'
     ],
     [
-      'Dissolve gelatine in pot',
-      'Add orange juice and sugar',
-      'Take pot off the stove',
-      'Add 2 tablespoons of yoghurt',
-      'Stir gelatin under remaining yoghurt',
-      'Cool everything down in the refrigerator',
-      'Whip the cream and lift it under die orange mass',
-      'Cool down again for at least 4 hours',
-      'Serve with orange peel'
+      'Rrafi bezet',
+      'Hidh sheqer duke perzier',
+      'Hidhi vaj e qumesht e perzihi',
+      'pastaj hidh miell. Duke hedh, duke perzi',
+      'Ne fund hidhi fryres edhe vanille edhe perzihi prap',
+      'Merr tepsi edhe hidh icik miell qe te mos ngjisi ose tek pjata furres',
+      'Boji si topa te vogel e shtype brumin',
+      'Fute ne furr me 220 grad',
+      'Leji 1ß-15 min te ftofen kur te mbaroj'
     ],
     true,
     false,
@@ -205,8 +208,8 @@ export const MEALS = [
     'Pancakes',
     'affordable',
     'simple',
-    'https://cdn.pixabay.com/photo/2018/07/10/21/23/pancake-3529653_1280.jpg',
-    20,
+    require("../assets/foodImg/pancakes.jpg"),
+  '20 min',
     [
       '1 1/2 Cups all-purpose Flour',
       '3 1/2 Teaspoons Baking Powder',
@@ -234,8 +237,8 @@ export const MEALS = [
     'Creamy Indian Chicken Curry',
     'pricey',
     'challenging',
-    'https://cdn.pixabay.com/photo/2018/06/18/16/05/indian-food-3482749_1280.jpg',
-    35,
+    require("../assets/foodImg/chickenCurry.jpg"),
+  '35 min',
     [
       '4 Chicken Breasts',
       '1 Onion',
@@ -265,8 +268,8 @@ export const MEALS = [
     'Chocolate Souffle',
     'affordable',
     'hard',
-    'https://cdn.pixabay.com/photo/2014/08/07/21/07/souffle-412785_1280.jpg',
-    45,
+    require("../assets/foodImg/ChocolateSouffle.jpg"),
+    '45 min',
     [
       '1 Teaspoon melted Butter',
       '2 Tablespoons white Sugar',
@@ -311,8 +314,8 @@ export const MEALS = [
     'Asparagus Salad with Cherry Tomatoes',
     'luxurious',
     'simple',
-    'https://cdn.pixabay.com/photo/2018/04/09/18/26/asparagus-3304997_1280.jpg',
-    30,
+    require("../assets/foodImg/AsparagusSalad.jpg"),
+    '30 min',
     [
       'White and Green Asparagus',
       '30g Pine Nuts',

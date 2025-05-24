@@ -13,7 +13,7 @@ function renderCategoryItem(itemData) {
     };
 
     return (
-        <CategoryGridTile title={itemData.item.title} color={itemData.item.color} onPressGrid={pressHandler}/>
+        <CategoryGridTile title={itemData.item.title} color={itemData.item.color} image={itemData.item.image} onPressGrid={pressHandler}/>
     );
 }
 

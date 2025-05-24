@@ -10,13 +10,11 @@ import { FavouritesContext } from "../store/context/favourite-context";
 function MealDetailsScreen({ route, navigation }) {
   const favMealsContext = useContext(FavouritesContext);
 
-  const mealId = route.params.mealId; //* in the params object we have meal id in the selectMealItemHandler
-
-  // gives access to all the properties(data) in meal.js
+  const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-  const mealIsFavourite = favMealsContext.ids.includes(mealId) //boolean: finds out if the meal is favourite or not
-  
+  const mealIsFavourite = favMealsContext.ids.includes(mealId);
+
   function changeFavStatusHandler() {
     if (mealIsFavourite) {
       favMealsContext.removeFavourite(mealId);
@@ -30,18 +28,18 @@ function MealDetailsScreen({ route, navigation }) {
       headerRight: () => {
         return (
           <IconButton
-            icon= {mealIsFavourite ? "star" : "star-outline"}
+            icon={mealIsFavourite ? "star" : "star-outline"}
             color="white"
             onPressedBtn={changeFavStatusHandler}
           />
         );
       },
     });
-  }, [navigation, changeFavStatusHandler]);
+  }, [navigation, mealIsFavourite]);
 
   return (
     <ScrollView style={styles.rootContainer}>
-      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+      <Image source={selectedMeal.imageUrl} style={styles.image} />
       <Text style={styles.title}>{selectedMeal.title}</Text>
       <MealDetails
         duration={selectedMeal.duration}

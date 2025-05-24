@@ -1,6 +1,6 @@
-import { Pressable, View, Text, StyleSheet, Platform } from "react-native";
+import { Pressable, View, Text, StyleSheet, Platform, ImageBackground } from "react-native";
 
-function CategoryGridTile({ title, color, onPressGrid }) {
+function CategoryGridTile({ title, color, image, onPressGrid }) {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -11,9 +11,19 @@ function CategoryGridTile({ title, color, onPressGrid }) {
         ]}
         onPress={onPressGrid}
       >
-        <View style={[styles.innerContainer, { backgroundColor: color }]}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
+        <ImageBackground
+          source={image}
+          style={styles.imageBackground}
+          imageStyle={{ borderRadius: 8 }}
+          resizeMode="cover"
+        >
+          {/* Transparent overlay with color */}
+          <View style={[styles.overlay, { backgroundColor: color + "AA" }]} />
+
+          <View style={styles.innerContainer}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        </ImageBackground>
       </Pressable>
     </View>
   );
@@ -22,15 +32,13 @@ function CategoryGridTile({ title, color, onPressGrid }) {
 export default CategoryGridTile;
 
 const styles = StyleSheet.create({
-  //parent container
   gridItem: {
     flex: 1,
     margin: 16,
     height: 150,
     borderRadius: 8,
-    elevation: 4, //*for android = creates a shodow(square)
-    // * for IOS :
-    backgroundColor: "white", //! without backgroundcolor the shadow does not show on ios
+    elevation: 4,
+    backgroundColor: "#fffafa",
     shadowColor: "black",
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
@@ -43,15 +51,23 @@ const styles = StyleSheet.create({
   buttonPressed: {
     opacity: 0.5,
   },
+  imageBackground: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,  // fills the entire ImageBackground
+    borderRadius: 8,
+  },
   innerContainer: {
     flex: 1,
-    padding: 16,
-    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 8,
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: "900",
     fontSize: 18,
+    color: "#000000",  // so text is readable on top of image+overlay
   },
 });
